@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sebastian Antonelli — Computer Engineer</title>
+  <meta name="description" content="Portfolio of Sebastian Antonelli, Computer Engineer working at the intersection of hardware, software, and FinTech." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0d0f14;
+      --panel: #151922;
+      --line: #232936;
+      --ink: #e6e9ef;
+      --muted: #8590a3;
+      --accent: #4ee39b;      /* signal green — reads as "live sensor" */
+      --accent-dim: #2a7d5a;
+      --warn: #ffb454;
+      --display: "Space Grotesk", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--display);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---------- Header / hero ---------- */
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 5rem 0 3.5rem;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(78,227,155,0.5); }
+      70%  { box-shadow: 0 0 0 10px rgba(78,227,155,0); }
+      100% { box-shadow: 0 0 0 0 rgba(78,227,155,0); }
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .lede {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 46ch;
+      margin-bottom: 2rem;
+    }
+    .lede strong { color: var(--ink); font-weight: 500; }
+    .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 0.65rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #06110b; border-color: var(--accent); font-weight: 500; }
+    .btn-primary:hover { background: #3fce89; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--line); }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    h2 { font-size: 1.6rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.01em; }
+    p.body { color: var(--muted); max-width: 62ch; }
+    p.body + p.body { margin-top: 1rem; }
+
+    /* ---------- Projects ---------- */
+    .project {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.6rem;
+      margin-bottom: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project:hover { border-color: var(--accent-dim); transform: translateY(-2px); }
+    .project-head {
+      display: flex; justify-content: space-between;
+      align-items: baseline; gap: 1rem; margin-bottom: 0.5rem;
+    }
+    .project h3 { font-size: 1.2rem; font-weight: 600; }
+    .project-year { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+    .project-summary { color: var(--muted); margin-bottom: 1rem; }
+    .stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+    .project-links { display: flex; gap: 1.25rem; font-family: var(--mono); font-size: 0.82rem; }
+
+    /* ---------- Skills ---------- */
+    .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+    .skill-col h4 { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .skill-col ul { list-style: none; }
+    .skill-col li { color: var(--muted); padding: 0.2rem 0; font-size: 0.95rem; }
+
+    /* ---------- Contact ---------- */
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; font-family: var(--mono); }
+    .contact-links a { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .contact-links span { color: var(--muted); }
+
+    footer { padding: 2.5rem 0; text-align: center; }
+    footer p { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse { animation: none; }
+      .project:hover { transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <p class="eyebrow"><span class="pulse"></span> Available for opportunities</p>
+      <h1>Sebastian Antonelli</h1>
+      <p class="lede">
+        Computer Engineer building at the seam of <strong>hardware, software, and FinTech</strong> —
+        from battery-safety ML pipelines to full-stack web systems.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/resume.pdf">Download résumé</a>
+        <a class="btn" href="https://github.com/yourusername">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/yourusername">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap">
+      <p class="section-label">// about</p>
+      <h2>Overview</h2>
+      <p class="body">
+        Computer Engineering graduate (B.S., University of Central Florida) pursuing an
+        M.S. in Financial Technology. I work across the full stack of a system — embedded
+        firmware and sensor integration on one end, data pipelines and web applications on
+        the other — with a growing focus on where that engineering meets financial technology.
+      </p>
+      <p class="body">
+        I care about work that's honest and defensible: systems that hold up under real
+        conditions, and claims I can back with a running demo or a repo.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <p class="section-label">// projects</p>
+      <h2>Selected work</h2>
+
+      <!-- Project card — duplicate this block to add more -->
+      <article class="project">
+        <div class="project-head">
+          <h3>BESS Thermal Runaway Prevention</h3>
+          <span class="project-year">Senior Design · 2026</span>
+        </div>
+        <p class="project-summary">
+          Machine-learning ensemble for early fault detection on a battery energy storage
+          testbench, sponsored by Siemens Energy. Built a real-time acquisition and
+          visualization pipeline over a 13-cell LFP pack with live temperature and BMS data.
+        </p>
+        <div class="stack">
+          <span class="tag">Python</span>
+          <span class="tag">LSTM</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">Daly BMS</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/bess-project">Repo →</a>
+          <a href="#">Write-up →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-head">
+          <h3>Role-Based Java EE Web Application</h3>
+          <span class="project-year">CNT 4714 · 2026</span>
+        </div>
+        <p class="project-summary">
+          Full servlet/JSP web application with role-based authentication (client, data-entry,
+          accountant) backed by MySQL and deployed on Tomcat. Handled the complete environment
+          setup and connection-pooling configuration.
+        </p>
+        <div class="stack">
+          <span class="tag">Java</span>
+          <span class="tag">JSP / Servlets</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Tomcat</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/java-ee-app">Repo →</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-head">
+          <h3>HLS Dot-Product Engine (FPGA)</h3>
+          <span class="project-year">EEL 4783 · 2026</span>
+        </div>
+        <p class="project-summary">
+          Hardware dot-product accelerator implemented in Vitis HLS — from C simulation
+          through synthesis and co-simulation — as an exercise in high-level synthesis and
+          scheduling for FPGA targets.
+        </p>
+        <div class="stack">
+          <span class="tag">Vitis HLS</span>
+          <span class="tag">C / C++</span>
+          <span class="tag">FPGA</span>
+          <span class="tag">RTL</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/yourusername/hls-dotproduct">Repo →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <p class="section-label">// skills</p>
+      <h2>Toolkit</h2>
+      <div class="skill-grid">
+        <div class="skill-col">
+          <h4>Languages</h4>
+          <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>C / C++</li>
+            <li>SQL</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>Systems &amp; Hardware</h4>
+          <ul>
+            <li>Embedded / Raspberry Pi</li>
+            <li>FPGA / Vitis HLS</li>
+            <li>Sensor &amp; BMS integration</li>
+            <li>USB-SCPI instrumentation</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h4>Software &amp; Data</h4>
+          <ul>
+            <li>FastAPI · Streamlit</li>
+            <li>MySQL · NoSQL</li>
+            <li>Plotly · Pandas</li>
+            <li>Git · Linux</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <p class="section-label">// contact</p>
+      <h2>Get in touch</h2>
+      <p class="body" style="margin-bottom: 1.5rem;">
+        Open to conversations about engineering and FinTech roles.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:you@example.com"><span>email</span> you@example.com</a>
+        <a href="https://github.com/yourusername"><span>github</span> /yourusername</a>
+        <a href="https://linkedin.com/in/yourusername"><span>linkedin</span> /in/yourusername</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>Built &amp; hosted on GitHub Pages · © 2026 Sebastian Antonelli</p>
+    </div>
+  </footer>
+
+</body>
+</html>
